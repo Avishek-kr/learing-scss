@@ -1,3 +1,8 @@
+$minIphone: 500px;
+$maxIphone: 690px;
+$minTablet: $maxIphone + 1;
+$maxTablet: 1120px;
+
 @mixin link($word){
     text-decoration: none;
     display: block;
@@ -5,5 +10,28 @@
         color: blue;
     }@else{
         color: red;
+    }
+}
+
+@mixin responsive($device) {
+    @if $device == 'iphone'{
+        @media screen and(min-width: $minIphone) and (max-width: $maxIphone ) { 
+            @content;
+        }
+    }
+    @if $device == 'tablet'{
+        @media screen and (min-width: $minTablet ) and (max-width:$maxTablet) { 
+            @content;
+        }
+    }
+    @if $device == 'iphone-l'{
+        @media screen and (max-width: $minIphone)  and (max-width: $maxIphone) and (orientation: landscape) { 
+            @content;
+        }
+    }
+    @if $device == 'ipad-l'{
+        @media screen and (min-width: $minTablet ) and (max-width:$maxTablet)  and (orientation: landscape) { 
+            @content;
+        }
     }
 }
